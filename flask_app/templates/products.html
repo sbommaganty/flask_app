@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>The Products </h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>The Name</th>
+            <th>The Tag</th>
+            <th> The Price</th>
+            <th>The Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.tag }}</td>
+            <td>${{ product.price }}</td>
+            <td><img src="{{ url_for('static', filename=product.image_path) }}" alt="{{ product.name }}" width="100">
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
