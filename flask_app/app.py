@@ -1,9 +1,20 @@
 from flask import Flask, render_template
 from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access environment variables securely
+MONGODB_USERNAME = os.getenv('MONGODB_USERNAME')
+MONGODB_PASSWORD = os.getenv('MONGODB_PASSWORD')
+MONGODB_CLUSTER = os.getenv('MONGODB_CLUSTER')
 
 app = Flask(__name__)
 
-client = MongoClient("mongodb+srv://swamynathanbommaganty:Swamy%40123@cluster0.xpyon.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+client = MongoClient("mongodb+srv://{MONGODB_USERNAME}:{MONGODB_PASSWORD}@{MONGODB_CLUSTER}/?retryWrites=true&w=majority&appName=Cluster0")
 db = client['shop_db']
 products_collection = db['products']
 
